@@ -1,14 +1,14 @@
 def tokenHunter(i):
     notional=1000
     """step 1- for each market, open the position to long with notional of 1k, leverage = 3x to safe as default """
-    #after the new emission schedule and new block time for wash trade (100 blocks, assuming 10 seconds per block, then > 15 minutes and < 20 minutes)
-    #then we will repeat 2 long/close (2 pair of wash trade per hour) * 24 = 48 times per day 
-    for k in range(0,48):
+    #after the new emission schedule and new block time for wash trade (100 blocks < 20 minutes)
+    #then we will repeat 3 * 24 = 72 trades a day = 36 pair trades a day = daily volume = 72k per market
+    for k in range(0,36):
         vault[pair]['apy_history'][i] = apy_history[pair][i]
         vault[pair]['side'][i] =1
         maxNotional = 0.1*(amm[pair]['Staked_amount'][i]+amm[pair]['net_exposure'][i]+amm[pair]['Unrealized_PnL'][i]) 
-        if maxNotional > vault_summary['Cash_reserves'][i]/5*3: 
-            maxNotional = vault_summary['Cash_reserves'][i]/5*3
+        if maxNotional > vault_summary['Cash_reserves'][i]/5*10: 
+            maxNotional = vault_summary['Cash_reserves'][i]/5*10
         else:
             pass
         #expected cost 
