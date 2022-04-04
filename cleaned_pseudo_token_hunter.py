@@ -3,6 +3,11 @@ def tokenHunter(i):
     """step 1- for each market, open the position to long with notional of 1k, leverage = 3x to safe as default """
     #after the new emission schedule and new block time for wash trade (100 blocks < 20 minutes)
     #then we will repeat 3 * 24 = 72 trades a day = 36 pair trades a day = daily volume = 72k per market     
+    #actual script doesn't need the for loop of 36, it only need to make decisions every 20 minutes > the wash trade block time 
+    #between each action (no matter open or close)
+    #only alternate between open / close every 20 minutes, if open follow the open logic in stpe 1  
+    #if close, just simply close (whether to open or to close, just check if any existing position 
+    #repeat for each market 
     for k in range(0,36):
         vault[pair]['apy_history'][i] = apy_history[pair][i]
         vault[pair]['side'][i] =1
